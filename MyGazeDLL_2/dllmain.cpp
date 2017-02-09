@@ -1,7 +1,5 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
-// Copyright 2013 by Ryklin Software, Inc.
+// Copyright 2017 by Ryklin Software, Inc.
 // All Rights Reserved.
-// Written by Edward Ryklin
 
 #include "stdafx.h"
 #include "MyGaze.h" // include your custom class
@@ -16,16 +14,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-        //MessageBox(0, TEXT("process attaching"), TEXT(""), 0);
         break;
 	case DLL_THREAD_ATTACH:
-        //MessageBox(0, TEXT("thread attaching"), TEXT(""), 0);
         break;
 	case DLL_THREAD_DETACH:
-        //MessageBox(0, TEXT("process dettaching"), TEXT(""), 0);
         break;
 	case DLL_PROCESS_DETACH:
-        //MessageBox(0, TEXT("thread dettaching"), TEXT(""), 0);
 		break;
 	}
 	return TRUE;
@@ -266,7 +260,7 @@ extern "C" __declspec(dllexport) string getInfo_SDK()
     return "?";
 }
 
-extern "C" __declspec(dllexport) string getInfo_DLL()
+extern "C" __declspec(dllexport) char* getVersion_DLL()
 {
     return "1.6.477";
 }
@@ -286,7 +280,7 @@ extern "C" __declspec(dllexport) int destroy()
 	return 0;
 }
 
-extern "C" __declspec(dllexport) int instantiate()
+extern "C" __declspec(dllexport) int instantiate(HWND hWnd)
 {
 	destroy();
 
